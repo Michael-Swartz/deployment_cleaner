@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  localstack:
+    image: localstack/localstack:0.13.3
+    ports:
+      # we only care about S3
+      - 4566:4566
+    environment:
+      - SERVICES=s3
+      - DEBUG=${DEBUG-}
+      - DATA_DIR=/data
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
+      - HOST_TMP_FOLDER=/tmp/localstack
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - data:/data/
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - ./bootstrap:/docker-entrypoint-initaws.d
+      - ./dev_data:/tmp/dev_data
+    init: true
+    container_name: deployment_cleanup
+volumes:
+  data:
