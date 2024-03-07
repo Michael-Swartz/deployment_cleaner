@@ -2,6 +2,36 @@
 
 Script that will allow you to specify a specific number of deployments to keep in an S3 bucket, and will delete the rest.
 
+### Assumptions
+
+- Directories (deployments) are a short sha commit hash
+- We assume the newest directory (based on the last modified date of the oldest object in a deployment) is the latest version of the deployment
+- Objects in the bucket are immutable
+
+The structure of the bucket looks like:
+```
+s3://<bucket>
+├── 2wse34dx
+│   ├── css
+│   │   └── font.css
+│   ├── images
+│   │   └── hey.png
+│   └── root.html
+├── 45tgbvfr
+│   ├── css
+│   │   └── font.css
+│   ├── images
+│   │   └── hey.png
+│   └── root.html
+├── cde34drf
+│   ├── css
+│   │   └── font.css
+│   ├── images
+│   │   └── hey.png
+│   └── root.html
+...
+```
+
 ## Usage
 
 ```
@@ -66,9 +96,3 @@ Included are unit tests. To run the unit tests run the followng:
 ```
 ./docker_run_tests.sh
 ```
-
-## Assumptions
-
-- Directories (deployments) are a short sha commit
-- We assume the newest directory (based on the last modified date of the oldest object in a deployment) is the latest version of the deployment
-- Objects in the bucket are immutable
