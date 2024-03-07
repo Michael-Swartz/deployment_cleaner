@@ -1,0 +1,17 @@
+name: Deployment Cleaner Lint and Test
+on: [push]
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    container: pyfound/black:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: black --check .
+  Test:
+    runs-on: ubuntu-latest
+    container: python:3.10
+    needs: Lint
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -r requirements.txt
+      - run: pytest tests

@@ -1,6 +1,7 @@
 FROM python:3.10
 
-RUN pip install boto3 semver pytest
+COPY ./requirements.txt /
+RUN pip install -r /requirements.txt
 
-COPY ./deployment_cleanup.py /
+COPY ./deployment_cleaner.py /
 COPY ./tests /tests/
