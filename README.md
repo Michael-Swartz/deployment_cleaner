@@ -35,9 +35,9 @@ s3://<bucket>
 ## Usage
 
 ```
-python3 deployment_cleanup.py --help                                                                      
+$ python3 deployment_cleaner.py --help                                                                       
 
-usage: deployment_cleanup.py [-h] [--dry-run] --deployments DEPLOYMENTS --bucket BUCKET
+usage: deployment_cleaner.py [-h] [--dry-run] --deployments DEPLOYMENTS --bucket BUCKET
                              [--endpoint-url ENDPOINT_URL]
 
 options:

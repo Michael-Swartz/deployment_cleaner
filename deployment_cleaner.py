@@ -130,7 +130,6 @@ class DeploymentCleaner:
 
 
 def main():
-    logger.info("Starting deployment cleaner...")
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--dry-run",
@@ -157,6 +156,7 @@ def main():
 
     args = parser.parse_args()
 
+    logger.info("Starting deployment cleaner...")
     deploymentcleaner = DeploymentCleaner(
         bucket=args.bucket,
         deployments_to_keep=args.deployments,
